@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Pathivara Holidays | The Sovereign Estate of Ilam</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@100;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,900&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <style>
+        :root {
+            --royal-gold: #C5A059;
+            --deep-umber: #2C1810;
+            --estate-jade: #2D3930;
+            --clay-red: #8B3E2F;
+            --paper-cream: #FAF9F6;
+            --pure-white: #FFFFFF;
+            --transition-slow: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Cormorant Garamond', serif; 
+            background-color: var(--paper-cream); 
+            color: #333; 
+            overflow-x: hidden;
+            font-size: 1.1rem;
+        }
+
+        /* --- Full Restoration: Preloader --- */
+        #loader {
+            position: fixed; inset: 0; background: var(--deep-umber);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 10000; transition: opacity 1s ease;
+        }
+        .loader-logo { 
+            font-family: 'Cinzel'; color: var(--royal-gold); 
+            letter-spacing: 10px; font-size: 1.5rem; animation: pulse 2s infinite;
+        }
+
+        /* --- Navigation: Fixed for Mobile --- */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            padding: 30px 5%; display: flex; justify-content: space-between; align-items: center;
+            z-index: 5000; transition: var(--transition-slow);
+            background: linear-gradient(to bottom, rgba(250,249,246,0.9), transparent);
+        }
+        nav.scrolled { padding: 15px 5%; background: rgba(250,249,246,0.98); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+
+        .brand-identity { text-align: center; text-decoration: none; z-index: 5001; }
+        .brand-name { font-family: 'Cinzel'; font-weight: 900; color: var(--clay-red); font-size: clamp(1.2rem, 4vw, 1.8rem); line-height: 1; }
+        .brand-tagline { font-family: 'Montserrat'; font-size: 0.6rem; letter-spacing: 4px; color: var(--estate-jade); text-transform: uppercase; }
+
+        .nav-menu { display: flex; list-style: none; gap: 30px; }
+        .nav-menu a { 
+            text-decoration: none; color: var(--deep-umber); font-family: 'Montserrat'; 
+            font-weight: 600; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+        }
+
+        .menu-toggle { display: none; font-size: 1.5rem; color: var(--deep-umber); cursor: pointer; z-index: 5001; }
+
+        /* --- Hero Section --- */
+        .hero-viewport {
+            height: 105vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), 
+                        url('kanyam.jpg') center/cover no-repeat fixed;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0% 100%);
+        }
+        .hero-title span { font-family: 'Great Vibes'; font-size: clamp(2.5rem, 6vw, 4rem); color: var(--royal-gold); }
+        .hero-title h1 { font-family: 'Playfair Display'; font-size: clamp(3.5rem, 10vw, 9rem); font-weight: 900; line-height: 0.85; margin: 20px 0; color: white; }
+
+        /* --- Restored Narrative Sections --- */
+        .narrative-container { padding: 100px 8%; max-width: 1600px; margin: 0 auto; }
+        
+        .story-block { 
+            display: grid; grid-template-columns: 1fr 1fr; 
+            gap: 80px; align-items: center; margin-bottom: 150px;
+        }
+        .story-content h3 { font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 25px; color: var(--clay-red); font-family: 'Playfair Display'; }
+        .story-content p { font-size: 1.2rem; line-height: 1.8; margin-bottom: 20px; color: #444; text-align: justify; }
+
+        .story-visual { position: relative; }
+        .story-visual img { width: 100%; border-radius: 4px; filter: sepia(0.1); transition: var(--transition-slow); }
+        .img-overlay-text { 
+            position: absolute; bottom: -20px; right: -20px; 
+            background: var(--estate-jade); color: var(--royal-gold); 
+            padding: 25px; font-family: 'Cinzel'; font-size: 0.7rem; letter-spacing: 2px; 
+        }
+
+        /* --- Restored Gastronomy --- */
+        .gastronomy-archive { background: var(--estate-jade); color: var(--paper-cream); padding: 100px 8%; }
+        .food-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; margin-top: 60px; 
+        }
+        .food-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(197, 160, 89, 0.2); padding: 40px; transition: var(--transition-slow); }
+        .food-card:hover { background: var(--clay-red); transform: translateY(-10px); }
+        .food-card i { font-size: 2.5rem; color: var(--royal-gold); margin-bottom: 20px; }
+
+        /* --- Suite Showcase (The Smooth Parallax) --- */
+        .suite-showcase { padding: 100px 0; background: var(--pure-white); text-align: center; }
+        .suite-parallax {
+            height: 60vh;
+            background: url('https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat fixed;
+            margin: 60px 0;
+        }
+
+        /* --- Concierge Restored --- */
+        .concierge-chamber { background: var(--deep-umber); color: white; padding: 100px 8%; text-align: center; }
+        .booking-grid { 
+            max-width: 1000px; margin: 50px auto 0; 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; 
+        }
+        .form-input { 
+            background: transparent; border: 1px solid rgba(197, 160, 89, 0.4); 
+            padding: 18px; color: white; font-family: 'Montserrat'; width: 100%;
+        }
+        .gold-btn { background: var(--royal-gold); padding: 20px 40px; border: none; font-family: 'Cinzel'; font-weight: 700; cursor: pointer; transition: 0.4s; }
+        .gold-btn:hover { background: white; letter-spacing: 3px; }
+
+        /* --- WhatsApp Restored --- */
+        .wa-float {
+            position: fixed; bottom: 40px; right: 40px;
+            width: 70px; height: 70px; background: #25D366;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 35px; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* --- MOBILE FIXES --- */
+        @media (max-width: 1024px) {
+            .story-block { grid-template-columns: 1fr; gap: 50px; }
+            .story-block:nth-child(even) .story-visual { order: -1; }
+            .hero-viewport { background-attachment: scroll; } /* Fix for mobile parallax lag */
+            .suite-parallax { background-attachment: scroll; }
+            
+            .menu-toggle { display: block; }
+            .nav-menu {
+                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+                background: var(--paper-cream); flex-direction: column; justify-content: center;
+                align-items: center; transition: 0.5s ease;
+            }
+            .nav-menu.active { right: 0; }
+            .nav-menu li { margin: 20px 0; }
+            .nav-menu a { font-size: 1.2rem; }
+            .img-overlay-text { position: relative; bottom: 0; right: 0; margin-top: 10px; width: 100%; text-align: center; }
+        }
+
+        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <div id="loader"><div class="loader-logo">MA PATHIVARA</div></div>
+
+    <a href="https://wa.me/9841341818" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <nav id="navbar">
+        <a href="#" class="brand-identity">
+            <div class="brand-name">MA PATHIVARA</div>
+            <div class="brand-tagline">Holidays & Bhansha Ghar</div>
+        </a>
+        <div class="menu-toggle" id="mobile-menu"><i class="fa-solid fa-bars-staggered"></i></div>
+        <ul class="nav-menu">
+            <li><a href="#heritage">The Heritage</a></li>
+            <li><a href="#culinary">Bhansha Ghar</a></li>
+            <li><a href="#suites">The Suites</a></li>
+            <li><a href="#reserve">Reservations</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero-viewport">
+        <div class="hero-title" data-aos="fade-up">
+            <span>Welcome to the Jewel of Kanyam</span>
+            <h1>ILAMIC LUXURY</h1>
+            <p class="brand-tagline" style="color: white; opacity: 0.8; margin-top: 10px;">Authentic • Organic • Sovereign</p>
+        </div>
+    </section>
+
+    <div class="narrative-container">
+        <!-- Restoration: Section 1 -->
+        <section class="story-block" id="heritage">
+            <div class="story-visual" data-aos="fade-right">
+                <img src="tea.jpg" alt="The Estate">
+                <div class="img-overlay-text">The Kanyam Legacy</div>
+            </div>
+            <div class="story-content" data-aos="fade-left">
+                <span style="color: var(--royal-gold); font-size: 2rem; font-family: 'Great Vibes';">A Tale of Two Hills</span>
+                <h3>The Spirit of Ma Pathivara</h3>
+                <p>Rising majestically above the morning mist of Suryodaya, Ma Pathivara Holidays is more than a boutique retreat—it is a sanctuary of Himalayan heritage. Every timber used in our architecture and every stone laid in our gardens tells a story of the Ilamic spirit.</p>
+                <p>Our estate is perched at an altitude that invites the clouds into your morning tea. Here, luxury is redefined through the lens of local authenticity. We offer a piece of the mountain's soul, curated for the discerning traveler.</p>
+            </div>
+        </section>
+
+        <!-- Restoration: Masu Bhat -->
+        <section class="story-block" id="culinary">
+            <div class="story-content" data-aos="fade-right">
+                <span style="color: var(--royal-gold); font-size: 2rem; font-family: 'Great Vibes';">Divine Flavors</span>
+                <h3>The Legend of Masu Bhat</h3>
+                <p>At the heart of our culinary philosophy is the iconic *Masu Bhat*. This is not merely a meal; it is a celebration of Nepalese hospitality. We source our meat from local hillside farms where animals graze on wild herbs.</p>
+                <p>Slow-cooked over a traditional wood fire, the spices permeate every fiber of the meat, creating a symphony of flavor that resonates with the heritage of the Himalayas. Served with world-famous Akabare Chillies of Ilam.</p>
+            </div>
+            <div class="story-visual" data-aos="fade-left">
+                <img src="masuhat.jpg" alt="The Feast">
+            </div>
+        </section>
+
+        <!-- Restoration: THE THUKPA RITUAL -->
+        <section class="story-block">
+            <div class="story-visual" data-aos="fade-right">
+                <img src="thupka.jpg" alt="Thukpa Ritual">
+            </div>
+            <div class="story-content" data-aos="fade-left">
+                <h3>Thukpa: Warmth for the Soul</h3>
+                <p>When the evening mist rolls into the estate and the temperature drops, our kitchen prepares the *Thukpa*. This traditional Himalayan noodle soup is our remedy for the cold. Our Thukpa is unique to Ma Pathivara, utilizing hand-pulled noodles and a broth that has been simmered for twelve hours.</p>
+                <p>Laden with fresh seasonal vegetables harvested from our own organic patch, each bowl provides a nourishing embrace. Whether you prefer it with shredded chicken or as a pure vegetable delight, our Thukpa is the ultimate comfort food for a high-altitude evening.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Gastronomy Restoration -->
+    <div class="gastronomy-archive">
+        <div style="text-align: center;">
+            <h2 style="font-size: 3rem; font-family: 'Playfair Display';">The Organic Menu</h2>
+            <p>A Curated Selection of Ilamic Excellence</p>
+        </div>
+        <div class="food-grid">
+            <div class="food-card" data-aos="zoom-in">
+                <i class="fa-solid fa-cloud-sun"></i>
+                <h4>Ilam Tea Ritual</h4>
+                <p>Harvested from the surrounding Kanyam gardens, our First Flush teas are served in a ceremony that honors the "Champagne of Teas."</p>
+            </div>
+            <div class="food-card" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fa-solid fa-hotdog"></i>
+                <h4>Himalayan Snacks</h4>
+                <p>From local 'Chhurpi' to crispy 'Sel Roti' prepared by our matriarchs, experience the true taste of Eastern Nepal.</p>
+            </div>
+            <div class="food-card" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fa-solid fa-leaf"></i>
+                <h4>Gundruk & Dhido</h4>
+                <p>For the purist, we serve fermented leafy greens and stone-ground buckwheat dough, the ancient power-food of our ancestors.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Suite Showcase Restoration -->
+    <section class="suite-showcase" id="suites">
+        <h2 style="font-size: 3rem; font-family: 'Playfair Display';">The Sovereignty of Sleep</h2>
+        <p style="max-width: 700px; margin: 20px auto; padding: 0 5%;">Our suites are designed as "View Galleries." Wake up to the sprawling emerald carpet of tea gardens and the silhouette of Kanyam.</p>
+        <img src="room.jpg.jpeg" alt="bedroom" height =500  />
+    </section>
+
+    <!-- Concierge Restoration -->
+    <section class="concierge-chamber" id="reserve">
+        <h2 style="font-size: 3rem; font-family: 'Playfair Display';">Inquiry Concierge</h2>
+        <div class="booking-grid">
+            <input type="text" class="form-input" placeholder="FULL NAME">
+            <input type="date" class="form-input">
+            <select class="form-input">
+                <option>SELECT SUITE</option>
+                <option>The Himalayan View Suite</option>
+                <option>The Kanyam Garden Room</option>
+            </select>
+            <button class="gold-btn">REQUEST ACCESS</button>
+        </div>
+    </section>
+
+    <footer style="background: #0b0b0b; padding: 80px 8%; color: #777; text-align: center;">
+        <h2 class="cinzel" style="color: var(--royal-gold); margin-bottom: 20px;">MA PATHIVARA</h2>
+        <p>Suryodaya, Ilam, Nepal | +977 984-1341818</p>
+        <div style="margin-top: 40px; font-size: 0.7rem; letter-spacing: 3px;">
+            &copy; 2026 MA PATHIVARA HOLIDAYS | DESIGNED BY ARTISANS
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1200, once: true });
+
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 1000);
+            }, 1000);
+        });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 100) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+
+        const menuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.querySelector('i').classList.toggle('fa-bars-staggered');
+            menuToggle.querySelector('i').classList.toggle('fa-xmark');
+        });
+    </script>
+</body>
+</html>
